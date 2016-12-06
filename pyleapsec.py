@@ -1,3 +1,8 @@
+"""
+Author:  Spencer Stirling
+License:  MIT
+"""
+
 import datetime as _datetime
 import calendar as _calendar
 import time as _time
