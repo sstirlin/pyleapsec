@@ -12,6 +12,7 @@ if hasattr(_ssl, '_create_unverified_context'):
     _ssl._create_default_https_context = _ssl._create_unverified_context
 import os.path as _ospath
 import re as _re
+import os as _os
 
 __all__ = ['LeapSecondConverter',]
 
@@ -30,7 +31,7 @@ class LeapSecondConverter():
         self._refresh_seconds = refresh_days*86400
         self._cache_dir = cache_dir
         if self._cache_dir == '':
-            self._cache_dir = os.getcwd()
+            self._cache_dir = _os.getcwd()
         self._last_refresh = 0
 
         # if a cache directory was specified, find the latest files
@@ -59,7 +60,7 @@ class LeapSecondConverter():
             raise RuntimeError("directory %s does not exist" % dirname)
 
         # find all files matching pattern
-        candidates = [fn for fn in os.listdir(dirname) if fn.startswith(file_prefix)]
+        candidates = [fn for fn in _os.listdir(dirname) if fn.startswith(file_prefix)]
 
         # grab the latest one
         if len(sorted(candidates)) > 0:
